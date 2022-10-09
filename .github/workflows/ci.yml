@@ -24,13 +24,13 @@ jobs:
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12.1347.0
         with:
-          directory: Dockerfile
+          framework: dockerfile
 
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v4
         with:
           image: suraj4797/demo-app
 
-          registry: docker.io
+          registry: hub.docker.com
           username: ${{ secrets.USER_NAME }}
           password: ${{ secrets.PASSWORD }}
