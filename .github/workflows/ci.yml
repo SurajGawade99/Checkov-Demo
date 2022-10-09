@@ -30,7 +30,6 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v4
         with:
           image: suraj4797/demo-app
-
-          registry: hub.docker.com
+          registry: docker.io
           username: ${{ secrets.USER_NAME }}
           password: ${{ secrets.PASSWORD }}
