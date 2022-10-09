@@ -1,7 +1,8 @@
 FROM openjdk:8-jre-alpine
 
-RUN useradd -d /home/appuser -m -s /bin/sh appuser
-USER appuser
+RUN useradd -ms /bin/bash new_user
+USER new_user
+WORKDIR /home/new_user 
 
 EXPOSE 8080
 
