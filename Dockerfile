@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 
-RUN useradd -ms /bin/bash new_user
+RUN useradd -ms /bin/sh new_user
 USER new_user
 WORKDIR /home/new_user 
 
