@@ -7,4 +7,3 @@ WORKDIR /usr/app
 
 ENTRYPOINT ["java", "-jar", "my-app-1.0-SNAPSHOT.jar"]
 
-TBD
