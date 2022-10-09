@@ -1,48 +1,36 @@
-
 name: Checkov Demo
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+    branches: ["main"]
 
 jobs:
-  build:
-
+  testing-checkov:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
 
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
+      - name: Checkov GitHub Action
+        uses: bridgecrewio/checkov-action@v12.1347.0
+        with:
+          directory: Dockerfile
 
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v4
+        with:
+          image: suraj4797/demo-app
 
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-      with:
-        arguments: build
-
-
-    - name: Checkov GitHub Action
-      uses: bridgecrewio/checkov-action@v12.1347.0
-      with:
-        directory: Dockerfile
-
-
-    - name: Build and Push Docker Image
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with:
-        image: suraj4797/demo-app
-        registry: docker.io
-        username: ${{ secrets.USER_NAME }}
-        password: ${{ secrets.PASSWORD }}
+          registry: docker.io
+          username: ${{ secrets.USER_NAME }}
+          password: ${{ secrets.PASSWORD }}
