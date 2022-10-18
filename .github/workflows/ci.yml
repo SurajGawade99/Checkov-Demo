@@ -20,7 +20,7 @@ jobs:
         with:
           framework: dockerfile
           output_format: json
-          file: path/result.json
+          directory: path/result.json
           soft_fail: true
           
       - uses: actions/upload-artifact@v3
