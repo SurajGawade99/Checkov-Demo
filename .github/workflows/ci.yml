@@ -22,7 +22,7 @@ jobs:
           output_format: json
           soft_fail: true
           
-      - run: dir >> path/result.json
+      - run: checkov >> path/result.json
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
