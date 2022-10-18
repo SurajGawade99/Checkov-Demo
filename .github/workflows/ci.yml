@@ -19,6 +19,7 @@ jobs:
         uses: bridgecrewio/checkov-action@v12.1347.0
         with:
           framework: dockerfile
+          output_format: json
           file: path/result.json
           soft_fail: true
           
