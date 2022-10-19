@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - run: mkdir -p path
 
       - name: Setup Python
@@ -21,3 +21,5 @@ jobs:
           python-version: 3.8
 
       - run: pip install checkov
+
+      - run: checkov -version
