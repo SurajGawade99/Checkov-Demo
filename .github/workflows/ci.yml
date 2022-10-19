@@ -31,6 +31,8 @@ jobs:
           
       - run: echo "$CHECKOV_RESULTS" > result.json
       
+      - run: git clone https://github.com/Suraj-1999-13/persistent_spring/tree/main/spring
+      
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
