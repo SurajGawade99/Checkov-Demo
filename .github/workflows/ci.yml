@@ -22,7 +22,7 @@ jobs:
 
       - run: pip install checkov
 
-      - run: checkov --output-file-path path/result.json
+      - run: checkov -o json>result.json || true
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12.1347.0
@@ -34,4 +34,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: path/result.json
+          path: result.json
