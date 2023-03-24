@@ -1,39 +1,30 @@
-name: Checkov Demo
+name: Create and analyze project in CAST AIP
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
-  testing-checkov:
+  analyze:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-
-      - run: mkdir -p path
-
-      - name: Setup Python
-        uses: actions/setup-python@v4.3.0
-        with:
-          python-version: 3.8
-
-      - run: pip install checkov
-
-      - name: Checkov GitHub Action
-        uses: bridgecrewio/checkov-action@v12.1347.0
-        with:
-          framework: dockerfile
-          output_format: json
-          soft_fail: true
-          
-      - run: echo "$CHECKOV_RESULTS" > result.json
+    - name: Checkout code
+      uses: actions/checkout@v2
       
-      - run: git clone https://github.com/Suraj-1999-13/Demo.git
+#     - name: Download CAST AIP Console Tools CLI
+#       run: |
+#         curl -L -o aip-console-tools-cli.jar https://github.com/CAST-Extend/com.castsoftware.aip.console.tools/releases/download/v2.5.5/aip-console-tools-cli.jar
+#         chmod +x aip-console-tools-cli.jar
+        
+#     - name: Create Project
+#       run: |
+#         ping 10.77.225.194
+
+    - name: security-devops-action
+      uses: microsoft/security-devops-action@v1.6.0
       
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: result.json
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: /home/runner/work/mean-stack/mean-stack/.gdn/msdo.sarif
