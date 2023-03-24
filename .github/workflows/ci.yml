@@ -27,4 +27,4 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
-        path: /home/runner/work/mean-stack/mean-stack/.gdn/msdo.sarif
+        path: /home/runner/work/Checkov-Demo/Checkov-Demo/.gdn/msdo.sarif
